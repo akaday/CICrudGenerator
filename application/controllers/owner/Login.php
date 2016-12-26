@@ -71,7 +71,7 @@ class Login extends CI_Controller {
 						'namalengkap' => $userdata->nama_lengkap,
 						'passuser'    => $userdata->password,
 						'leveluser'   => $userdata->level
-		                                );
+					);
 					// buat session
 					$this->session->set_userdata($session_data);
 
@@ -85,7 +85,10 @@ class Login extends CI_Controller {
 
 		            $this->users_model->update($userdata->username, $data);
 
-					redirect($this->admin_folder.'dashboard1');
+					// redirect($this->admin_folder.'dashboard1');
+					$go_to = $this->db->query("SELECT * FROM users_jabatan WHERE id_jabatan = '$userdata->level' ")->row()->ke;
+					
+			        redirect($this->admin_folder."$go_to");
 				}
 
 			}

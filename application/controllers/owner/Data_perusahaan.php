@@ -16,7 +16,7 @@ class Data_organisasi extends CI_Controller
 
     public function index()
     {   
-        $this->auth->is_admin();
+        $this->auth->is_jabatan($this->router->fetch_class());
         redirect(site_url('owner/data_organisasi/update/1'));
 
         $data_organisasi = $this->data_organisasi_model->get_all();
@@ -37,6 +37,8 @@ class Data_organisasi extends CI_Controller
 
     public function read($id) 
     {
+        $this->auth->is_jabatan($this->router->fetch_class());
+
         $row = $this->data_organisasi_model->get_by_id($id);
         if ($row) {
             $data = array(
@@ -69,6 +71,7 @@ class Data_organisasi extends CI_Controller
     
     public function create() 
     {
+        $this->auth->is_jabatan($this->router->fetch_class());
         $data = array(
             'button' => 'Create',
             'action' => site_url('owner/data_organisasi/create_action'),
@@ -96,6 +99,7 @@ class Data_organisasi extends CI_Controller
     
     public function create_action() 
     {
+        $this->auth->is_jabatan($this->router->fetch_class());
         $this->_rules();
 
         if ($this->form_validation->run() == FALSE) {
@@ -119,6 +123,7 @@ class Data_organisasi extends CI_Controller
     
     public function update($id) 
     {
+        $this->auth->is_jabatan($this->router->fetch_class());
         $row = $this->data_organisasi_model->get_by_id($id);
 
         if ($row) {
@@ -158,6 +163,7 @@ class Data_organisasi extends CI_Controller
     
     public function update_action() 
     {
+        $this->auth->is_jabatan($this->router->fetch_class());
         $this->_rules();
 
         if ($this->form_validation->run() == FALSE) {
@@ -220,6 +226,8 @@ class Data_organisasi extends CI_Controller
     
     public function delete($id) 
     {
+        $this->auth->is_jabatan($this->router->fetch_class());
+        
         $row = $this->data_organisasi_model->get_by_id($id);
 
         if ($row) {

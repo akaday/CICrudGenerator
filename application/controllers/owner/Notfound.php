@@ -13,7 +13,7 @@ class Notfound extends CI_Controller {
 
 	public function index()
 	{	
-		$this->auth->is_admin();
+		$this->auth->is_jabatan($this->router->fetch_class());
 
 		//DATA
 		$data['folder_admin'] = $this->admin_folder;

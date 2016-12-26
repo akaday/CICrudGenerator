@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard1 extends CI_Controller {
+class Dashboard extends CI_Controller {
 
 	public $admin_folder;
 
@@ -14,7 +14,7 @@ class Dashboard1 extends CI_Controller {
 
 	public function index()
 	{	
-		$this->auth->is_admin();
+		$this->auth->is_jabatan($this->router->fetch_class());
 
 		//DATA
 		$data['folder_admin'] 			= $this->admin_folder;

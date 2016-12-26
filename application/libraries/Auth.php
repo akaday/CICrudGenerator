@@ -43,21 +43,11 @@ class Auth{
             redirect('');
 		}
 	}
+
 	function is_member($module = 0, $hal_event = 0)
 	{
 			$id_jabatan = $this->CI->session->userdata('leveluser');
 			$id_eo 			= $this->CI->session->userdata('id_event_eo');
-
-			if($module == 'point_withdraw' OR $module == 'point_deposit' OR $module == 'point_statement')
-			{
-				$module = 'finance';
-			}
-			// echo "$module <br />";
-			if($module == 'Event_acara_showtime' OR $module == 'Event_acara_tiket')
-			{
-				$module = 'event_acara';
-			}
-			// echo "$module <br />";
 
 			$this->CI->db->from('event_staff_eo');
 			$this->CI->db->where('id_eo', $id_eo);
@@ -83,32 +73,15 @@ class Auth{
 				elseif ($result1->row()->level == "regis" AND $hal_event == 0)
 				{
 					$this->CI->session->set_flashdata('message', 'Mohon Lengkapi Profil Anda');
-					redirect('member/event_eo/update/'.$this->session->userdata('id_event_eo'));
+					redirect('member/users/update/'.$this->session->userdata('id_event_eo'));
 				}
 			}
 			elseif ($result1->row()->level == "regis" AND $hal_event == 0)
 			{
 				$this->CI->session->set_flashdata('message', 'Mohon Lengkapi Profil Anda');
-				redirect('member/event_eo/update/'.$this->CI->session->userdata('id_event_eo'));
+				redirect('member/users/update/'.$this->CI->session->userdata('id_event_eo'));
 			}
-			// elseif($id_jabatan != "112")	//Member / Staff Buatan
-			// {
-			// 		$this->CI->db->from('event_staff_eo');
-			// 		$this->CI->db->where('id_db', $id_eo);
-			// 		$this->CI->db->where("list_module_eo like '%|$module|%'");
-			// 		$result2 = $this->CI->db->get();
-			//
-			// 		if($this->CI->session->userdata('namauser') 	== ''
-			// 		AND $this->CI->session->userdata('passuser') 	== ''
-			// 		AND $this->CI->session->userdata('leveluser') == '')
-			// 		{
-			//       	redirect('');
-			// 		}
-			// 		elseif($result2->num_rows() == 0)
-			// 		{
-			// 				redirect('');
-			// 		}
-			// }
+
 	}
 	function is_jabatan($module = 0)
 	{
@@ -116,6 +89,7 @@ class Auth{
 		$this->CI->db->from('users_jabatan');
 		$this->CI->db->where('id_jabatan', $id_jabatan);
 		$this->CI->db->where("list_modul like '%$module%'");
+		
 		$result = $this->CI->db->get();
 		// echo $this->CI->db->last_query();
 		if($id_jabatan != "1")

@@ -3,11 +3,11 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Tentang_kami_model extends CI_Model
+class Member_model extends CI_Model
 {
 
-    public $table = 'tentang_kami';
-    public $id = 'id_db';
+    public $table = 'member';
+    public $id = 'username';
     public $order = 'DESC';
 
     function __construct()
@@ -44,20 +44,24 @@ class Tentang_kami_model extends CI_Model
     
     // get search total rows
     function search_total_rows($keyword = NULL) {
-        $this->db->like('id_db', $keyword);
-	$this->db->or_like('isi', $keyword);
-	$this->db->or_like('isi_en', $keyword);
-	$this->db->from($this->table);
+        $this->db->like('id_main', $keyword);
+    	$this->db->or_like('username', $keyword);
+    	$this->db->or_like('password', $keyword);
+    	$this->db->or_like('nama_member', $keyword);
+    	$this->db->or_like('status', $keyword);
+    	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get search data with limit
     function search_index_limit($limit, $start = 0, $keyword = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('id_db', $keyword);
-	$this->db->or_like('isi', $keyword);
-	$this->db->or_like('isi_en', $keyword);
-	$this->db->limit($limit, $start);
+        $this->db->like('id_main', $keyword);
+    	$this->db->or_like('username', $keyword);
+    	$this->db->or_like('password', $keyword);
+    	$this->db->or_like('nama_member', $keyword);
+    	$this->db->or_like('status', $keyword);
+    	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 
@@ -83,5 +87,5 @@ class Tentang_kami_model extends CI_Model
 
 }
 
-/* End of file Tentang_kami_model.php */
-/* Location: ./application/models/Tentang_kami_model.php */
+/* End of file Module_member_model.php */
+/* Location: ./application/models/Module_member_model.php */

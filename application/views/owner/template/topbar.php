@@ -1,4 +1,4 @@
-<a href="#" class="logo"><b>Nama Website</b></a>
+<a href="dashboard.html" class="logo"><b>Nama Website</b></a>
 <!-- Header Navbar: style can be found in header.less -->
 <nav class="navbar navbar-static-top" role="navigation">
     <!-- Sidebar toggle button-->

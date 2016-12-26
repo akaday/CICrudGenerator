@@ -36,6 +36,8 @@ class Hubungi_kami extends CI_Controller
 
     public function read($id) 
     {
+        $this->auth->is_jabatan($this->router->fetch_class());
+
         $row = $this->hubungi_kami_model->get_by_id($id);
         if ($row) {
             $data = array(
@@ -64,6 +66,8 @@ class Hubungi_kami extends CI_Controller
     
     public function create() 
     {
+        $this->auth->is_jabatan($this->router->fetch_class());
+
         $data = array(
             'button' => 'Create',
             'action' => site_url('owner/hubungi_kami/create_action'),
@@ -87,6 +91,8 @@ class Hubungi_kami extends CI_Controller
     
     public function create_action() 
     {
+        $this->auth->is_jabatan($this->router->fetch_class());
+
         $this->_rules();
 
         if ($this->form_validation->run() == FALSE) {
@@ -106,6 +112,8 @@ class Hubungi_kami extends CI_Controller
     
     public function update($id) 
     {
+        $this->auth->is_jabatan($this->router->fetch_class());
+
         $row = $this->hubungi_kami_model->get_by_id($id);
 
         if ($row) {
@@ -136,6 +144,8 @@ class Hubungi_kami extends CI_Controller
     
     public function update_action() 
     {
+        $this->auth->is_jabatan($this->router->fetch_class());
+
         $this->_rules();
 
         if ($this->form_validation->run() == FALSE) {
@@ -155,6 +165,8 @@ class Hubungi_kami extends CI_Controller
     
     public function delete($id) 
     {
+        $this->auth->is_jabatan($this->router->fetch_class());
+        
         $row = $this->hubungi_kami_model->get_by_id($id);
 
         if ($row) {

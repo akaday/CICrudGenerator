@@ -71,7 +71,7 @@ class Login extends CI_Controller {
 					$userdata = $result->row();
 					$session_data = array(
 						'namauser'    => $userdata->username,
-						'namalengkap' => $userdata->nama,
+						'namalengkap' => $userdata->nama_lengkap,
 						'passuser'    => $userdata->password,
 						'leveluser'   => $userdata->level
 		                                );

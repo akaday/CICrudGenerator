@@ -3,11 +3,11 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Module_member_model extends CI_Model
+class Users_jabatan_model extends CI_Model
 {
 
-    public $table = 'module_member';
-    public $id = 'id_main';
+    public $table = 'users_jabatan';
+    public $id = 'id_jabatan';
     public $order = 'DESC';
 
     function __construct()
@@ -44,13 +44,10 @@ class Module_member_model extends CI_Model
     
     // get search total rows
     function search_total_rows($keyword = NULL) {
-        $this->db->like('id_main', $keyword);
-	$this->db->or_like('nama_menu', $keyword);
-	$this->db->or_like('link', $keyword);
-	$this->db->or_like('jabatan', $keyword);
-	$this->db->or_like('parrent', $keyword);
-	$this->db->or_like('urutan', $keyword);
-	$this->db->or_like('icon', $keyword);
+        $this->db->like('id_jabatan', $keyword);
+	$this->db->or_like('nama_jabatan', $keyword);
+	$this->db->or_like('list_modul', $keyword);
+	$this->db->or_like('ke', $keyword);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -58,13 +55,10 @@ class Module_member_model extends CI_Model
     // get search data with limit
     function search_index_limit($limit, $start = 0, $keyword = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('id_main', $keyword);
-	$this->db->or_like('nama_menu', $keyword);
-	$this->db->or_like('link', $keyword);
-	$this->db->or_like('jabatan', $keyword);
-	$this->db->or_like('parrent', $keyword);
-	$this->db->or_like('urutan', $keyword);
-	$this->db->or_like('icon', $keyword);
+        $this->db->like('id_jabatan', $keyword);
+	$this->db->or_like('nama_jabatan', $keyword);
+	$this->db->or_like('list_modul', $keyword);
+	$this->db->or_like('ke', $keyword);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
@@ -91,5 +85,5 @@ class Module_member_model extends CI_Model
 
 }
 
-/* End of file Module_member_model.php */
-/* Location: ./application/models/Module_member_model.php */
+/* End of file users_jabatan_model.php */
+/* Location: ./application/models/users_jabatan_model.php */

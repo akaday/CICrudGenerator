@@ -52,5 +52,5 @@
     <!-- =============================================== -->
     
 
-        <?php   $this->load->view($folder_admin.'template/js'); ?>
+<?php   $this->load->view($folder_admin.'template/js'); ?>
 <?php   $this->load->view($folder_admin.'template/foot'); ?>

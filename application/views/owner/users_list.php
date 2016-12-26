@@ -56,11 +56,14 @@
 		    <td><?php echo $users->list_modul ?></td> -->
 		    <td style="text-align:center">
 			<?php 
-			//echo anchor(site_url('owner/users/read/'.$users->username),'Read'); 
-			//echo ' | '; 
-			echo anchor(site_url('owner/users/update_normal/'.$users->username),'Update'); 
-			echo ' | '; 
-			echo anchor(site_url('owner/users/delete/'.$users->username),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+            if($users->username != "admin")
+            {
+    			echo anchor(site_url('owner/users/update_normal/'.$users->username),'Update'); 
+    			echo ' | '; 
+    			echo anchor(site_url('owner/users/delete/'.$users->username),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+            }
+            //echo anchor(site_url('owner/users/read/'.$users->username),'Read'); 
+            //echo ' | '; 
 			?>
 		    </td>
 	        </tr>

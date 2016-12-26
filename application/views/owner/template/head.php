@@ -2,6 +2,7 @@
     <meta charset="UTF-8">
     <title> Nama Website | Dashboard</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    
     <!-- Bootstrap -->
     <link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet" type="text/css" />
     <!-- Font Awesome Icons -->
@@ -11,10 +12,8 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link href="<?php echo base_url('assets/AdminLTE/dist/css/skins/_all-skins.min.css') ?>" rel="stylesheet" type="text/css" />
-    <!-- Date Picker -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css" rel="stylesheet" type="text/css">
     <!-- Table Picker -->
-    <link href="<?php echo base_url('assets/datatables2/datable.css') ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url('assets/datatables2/datable.css'); ?>" rel="stylesheet" type="text/css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -23,6 +22,7 @@
     <![endif]-->
     <!--tambahkan custom css disini-->
     <!-- Date Picker -->
+    <link href="<?php echo base_url('assets/AdminLTE/plugins/datepicker/datepicker.css'); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url('assets/AdminLTE/plugins/datepicker/datepicker3.css') ?>" rel="stylesheet" type="text/css" />
     <!-- Daterange picker -->
     <link href="<?php echo base_url('assets/AdminLTE/plugins/daterangepicker/daterangepicker-bs3.css') ?>" rel="stylesheet" type="text/css" />

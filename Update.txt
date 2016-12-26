@@ -1,0 +1,5 @@
+Vers 1.0
+
+Vers 1.0.1
+- member siste
+- membuat log

@@ -100,8 +100,12 @@ class Users extends CI_Controller
     public function create_action() 
     {
         $this->auth->is_jabatan($this->router->fetch_class());
+
+        $this->form_validation->set_rules('userdata', ' ', 'trim|required|callback_username_check');
+        $this->form_validation->set_rules('password', ' ', 'trim|required');
         $this->_rules_normal();
 
+        
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
@@ -202,7 +206,7 @@ class Users extends CI_Controller
             'blokir' => set_value('blokir', $row->blokir),
             'id_session' => set_value('id_session', $row->id_session),
             'kcfinder' => set_value('kcfinder', $row->kcfinder),
-            'list_modul' => set_value('list_modul', $row->list_modul),
+            // 'list_modul' => set_value('list_modul', $row->list_modul),
         );
             //DATA
             $data['folder_admin']            = $this->admin_folder;
@@ -226,24 +230,26 @@ class Users extends CI_Controller
         $this->auth->is_jabatan($this->router->fetch_class());
         $this->_rules_normal();
 
-        $this->form_validation->set_rules('password', ' ', 'trim|required|callback_oldpassword_check');
-        $this->form_validation->set_rules('password_baru', ' ', 'trim|required|matches[ulangi_password]');
-        $this->form_validation->set_rules('ulangi_password', 'Ulangi Password', 'trim|required');
+        if ($this->input->post('password',TRUE) != "") {
+            $this->form_validation->set_rules('password', ' ', 'trim|required|callback_oldpassword_check');
+            $this->form_validation->set_rules('password_baru', ' ', 'trim|required|matches[ulangi_password]');
+            $this->form_validation->set_rules('ulangi_password', 'Ulangi Password', 'trim|required');
+        }
 
         if ($this->form_validation->run() == FALSE) {
             $this->update_normal($this->input->post('username', TRUE));
         } else {
             $data = array(
-        'password' => $this->input->post('password',TRUE),
-        'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
-        'email' => $this->input->post('email',TRUE),
-        'no_telp' => $this->input->post('no_telp',TRUE),
-        'level' => $this->input->post('level',TRUE),
-        'blokir' => $this->input->post('blokir',TRUE),
-//        'id_session' => $this->input->post('id_session',TRUE),
-//        'kcfinder' => $this->input->post('kcfinder',TRUE),
-//        'list_modul' => $this->input->post('list_modul',TRUE),
-        );
+                'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
+                'email' => $this->input->post('email',TRUE),
+                'no_telp' => $this->input->post('no_telp',TRUE),
+                'level' => $this->input->post('level',TRUE),
+                'blokir' => $this->input->post('blokir',TRUE),
+            );
+            
+            if ($this->input->post('password',TRUE) != "") {
+                $data['password'] = md5($this->input->post('password_baru',TRUE));
+            }
 
             $this->users_model->update($this->input->post('username', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -284,8 +290,6 @@ class Users extends CI_Controller
 
     public function _rules_normal() 
     {   
-        $this->form_validation->set_rules('userdata', ' ', 'trim|required|callback_username_check');
-        $this->form_validation->set_rules('password', ' ', 'trim|required');
         $this->form_validation->set_rules('nama_lengkap', ' ', 'trim|required');
         $this->form_validation->set_rules('email', ' ', 'trim|required');
         $this->form_validation->set_rules('no_telp', ' ', 'trim|required');
