@@ -4,6 +4,11 @@ Detail
 
 make sistem core admin sistem with CRUD Generator in CI framework admin with Admin LTE template
 
+###################
+Update Version 1.1 
+###################
+
+- Multiple Users
 
 ###################
 What is CodeIgniter
